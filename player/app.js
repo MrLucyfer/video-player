@@ -42,7 +42,7 @@ function calculateTime() {
   let minutes = (time.getMinutes().toString()).padStart('2', '0');
   let seconds = (time.getSeconds().toString()).padStart('2', '0');
 
-  timeLeft.textContent = `${hours ? hours : '00'}:${minutes}:${seconds}`;
+  timeLeft.textContent = `${hours ? hours : ''}${minutes}:${seconds}`;
 }
 
 video.oncanplay = () => {
