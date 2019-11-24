@@ -102,9 +102,30 @@ body {
   cursor: pointer;
 }
 
+.video-container .controls label {
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 0px 1vw;
+  opacity: 0.4;
+  transform: scale(0.8);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
 .video-container .controls button:hover {
   opacity: 1;
   transform: scale(1.2);
+}
+
+.video-container .controls label:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .video-container .controls button svg {
@@ -117,9 +138,20 @@ body {
   height: 100%;
 }
 
+.video-container .controls label svg {
+  fill: white;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  width: 100%;
+  height: 100%;
+}
+
+
 .video-container .controls button.volume svg path,
 .video-container .controls button.help svg,
-.video-container .controls button.episodes svg,
+.video-container .controls label.episodes svg,
 .video-container .controls button.full-screen svg,
 .video-container .controls button.volume svg path,
 .video-container .controls button.cast svg {
@@ -161,4 +193,8 @@ body {
   color: #A1A1A1;
   font-size: 0.75em;
   padding-left: 1vw;
+}
+
+.video-container .controls .episodes .episodes-button {
+  display: none;
 }

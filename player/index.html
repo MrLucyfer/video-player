@@ -12,7 +12,7 @@
 
 <body>
   <div class="video-container">
-    <video preload="metadata" src="bbb.mp4#t=0.5"></video>
+    <video preload="metadata"></video>
 
     <div class="controls-container">
       <div class="progress-controls">
@@ -58,7 +58,7 @@
           </svg>
         </button>
         <p class="title">
-          <span class="series">Blender Foundation</span> <span class="episode">Big Buck Bunny</span>
+          <span class="series">Select a File:</span>
         </p>
         <button class="help">
           <svg viewBox="0 0 24 24">
@@ -73,13 +73,14 @@
             <line x1="19" y1="5" x2="19" y2="19"></line>
           </svg>
         </button>
-        <button class="episodes">
+        <label class="episodes">
+          <input type="file" accept="video/*" class="episodes-button">
           <svg viewBox="0 0 24 24">
             <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
             <polyline points="2 17 12 22 22 17"></polyline>
             <polyline points="2 12 12 17 22 12"></polyline>
           </svg>
-        </button>
+        </label>
         <button class="captions">
           <svg viewBox="0 0 20 20">
             <path

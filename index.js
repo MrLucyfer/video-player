@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, dialog } = require('electron')
 
 function createWindow () {
   // Create the browser window.
@@ -11,8 +11,9 @@ function createWindow () {
     titleBarStyle: 'hidden'
   })
 
+  win.setWindowButtonVisibility(false);
   // and load the index.html of the app.
-  win.loadFile('player/index.html')
+  win.loadFile('player/index.html');
 }
 
 app.on('ready', createWindow)

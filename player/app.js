@@ -15,7 +15,8 @@ const mutedButton = volumeButton.querySelector('.muted');
 const maximizeButton = fullScreenButton.querySelector('.maximize');
 const minimizeButton = fullScreenButton.querySelector('.minimize');
 
-
+const inputFile = document.querySelector('.video-container .controls .episodes .episodes-button');
+const title = document.querySelector('.video-container .controls .title .series')
 const progressBar = document.querySelector('.video-container .progress-controls .progress-bar');
 const watchedBar = document.querySelector('.video-container .progress-controls .progress-bar .watched-bar');
 const timeLeft = document.querySelector('.video-container .progress-controls .time-remaining');
@@ -48,6 +49,11 @@ function calculateTime() {
 video.oncanplay = () => {
   calculateTime();
 }
+
+inputFile.addEventListener('input', (e) => {
+  video.src = inputFile.files[0].path + '#t=0.5';
+  title.textContent = inputFile.files[0].name;
+})
 
 const displayControls = () => {
   controlsContainer.style.opacity = '1';
