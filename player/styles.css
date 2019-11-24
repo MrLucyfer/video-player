@@ -45,6 +45,7 @@ body {
 .video-container .progress-controls .time-remaining {
   margin: 1vw;
   width: 4vw;
+  user-select: none;
 }
 
 .video-container .progress-controls .progress-bar {
@@ -141,6 +142,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  user-select: none;
 }
 
 @media only screen and (max-width: 768px) {

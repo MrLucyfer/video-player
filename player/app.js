@@ -26,6 +26,29 @@ watchedBar.style.width = '0px';
 pauseButton.style.display = 'none';
 minimizeButton.style.display = 'none';
 
+function calculateTime() {
+  watchedBar.style.width = ((video.currentTime / video.duration) * 100) + '%';
+  
+  const totalSecondsRemaining = video.duration - video.currentTime;
+
+  const time = new Date(null);
+  time.setSeconds(totalSecondsRemaining);
+  let hours = null;
+
+  if(totalSecondsRemaining >= 3600) {
+    hours = (time.getHours().toString()).padStart('2', '0');
+  }
+
+  let minutes = (time.getMinutes().toString()).padStart('2', '0');
+  let seconds = (time.getSeconds().toString()).padStart('2', '0');
+
+  timeLeft.textContent = `${hours ? hours : '00'}:${minutes}:${seconds}`;
+}
+
+video.oncanplay = () => {
+  calculateTime();
+}
+
 const displayControls = () => {
   controlsContainer.style.opacity = '1';
   document.body.style.cursor = 'initial';
@@ -99,23 +122,20 @@ document.addEventListener('mousemove', () => {
   displayControls();
 });
 
-video.addEventListener('timeupdate', () => {
-  watchedBar.style.width = ((video.currentTime / video.duration) * 100) + '%';
-  // TODO: calculate hours as well...
-  const totalSecondsRemaining = video.duration - video.currentTime;
-  // THANK YOU: BEGANOVICH
-  const time = new Date(null);
-  time.setSeconds(totalSecondsRemaining);
-  let hours = null;
-
-  if(totalSecondsRemaining >= 3600) {
-    hours = (time.getHours().toString()).padStart('2', '0');
+document.addEventListener('mousedown', (event) => {
+  
+  if(event.detail == 2) {
+    toggleFullScreen();
   }
+  else if(event.detail == 1) {
+    if(event.path[0].localName == 'video' || event.path[0].className == 'controls-container') {
+      playPause();
+    }
+  }
+})
 
-  let minutes = (time.getMinutes().toString()).padStart('2', '0');
-  let seconds = (time.getSeconds().toString()).padStart('2', '0');
-
-  timeLeft.textContent = `${hours ? hours : '00'}:${minutes}:${seconds}`;
+video.addEventListener('timeupdate', () => {
+  calculateTime();
 });
 
 progressBar.addEventListener('click', (event) => {
