@@ -1,3 +1,11 @@
+
+const { ipcRenderer } = require('electron')
+
+ipcRenderer.on('path', (event, arg) => {
+  console.log(arg) // prints "pong"
+})
+
+
 const videoContainer = document.querySelector('.video-container');
 const video = document.querySelector('.video-container video');
 

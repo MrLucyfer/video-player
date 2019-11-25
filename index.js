@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 
 function createWindow () {
   // Create the browser window.
@@ -16,4 +16,10 @@ function createWindow () {
   win.loadFile('player/index.html');
 }
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);
+
+app.on('open-file', (e, path) => {
+  e.preventDefault();
+  win.webContents.send('path', path);
+})
+
