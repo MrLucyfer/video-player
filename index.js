@@ -5,10 +5,10 @@ function createWindow () {
   let win = new BrowserWindow({
     width: 1280,
     height: 720,
+    titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: true
-    },
-    titleBarStyle: 'hidden'
+    }
   })
 
   win.setWindowButtonVisibility(false);

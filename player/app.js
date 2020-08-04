@@ -1,10 +1,5 @@
 
-const { ipcRenderer } = require('electron')
-
-ipcRenderer.on('path', (event, arg) => {
-  console.log(arg) // prints "pong"
-})
-
+const ipc = require('ipc')
 
 const videoContainer = document.querySelector('.video-container');
 const video = document.querySelector('.video-container video');
@@ -129,6 +124,14 @@ document.addEventListener('keyup', (event) => {
     toggleFullScreen();
   }
 
+  if(event.code === 'ArrowRight') {
+    video.currentTime += 10;
+  }
+
+  if(event.code === 'ArrowLeft') {
+    video.currentTime -= 10;
+  }
+
   displayControls();
 });
 
@@ -170,3 +173,30 @@ fastForwardButton.addEventListener('click', () => {
 volumeButton.addEventListener('click', toggleMute);
 
 fullScreenButton.addEventListener('click', toggleFullScreen);
+
+document.addEventListener('drop', (event) => {
+  event.preventDefault();
+  event.stopPropagation()
+
+  if(event.dataTransfer.files.length == 1) {
+    video.src = event.dataTransfer.files[0].path + '#t=0.5';
+    video.play();
+  }
+})
+
+document.addEventListener('dragover', (e) => { 
+  e.preventDefault(); 
+  e.stopPropagation(); 
+}); 
+
+document.addEventListener('dragenter', (event) => { 
+  console.log('File is in the Drop Space'); 
+}); 
+
+document.addEventListener('dragleave', (event) => { 
+  console.log('File has left the Drop Space'); 
+});
+
+ipc.on('open-file', function(filepath) {
+  alert(filepath);
+});
